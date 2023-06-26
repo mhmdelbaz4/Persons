@@ -105,3 +105,4 @@ D:\Projects\Github\Persons\PersonsTest\obj\Debug\net6.0\refint\PersonsTest.dll
 D:\Projects\Github\Persons\PersonsTest\obj\Debug\net6.0\PersonsTest.pdb
 D:\Projects\Github\Persons\PersonsTest\obj\Debug\net6.0\PersonsTest.genruntimeconfig.cache
 D:\Projects\Github\Persons\PersonsTest\obj\Debug\net6.0\ref\PersonsTest.dll
+D:\Projects\Github\Persons\PersonsTest\bin\Debug\net6.0\Persons.staticwebassets.runtime.json

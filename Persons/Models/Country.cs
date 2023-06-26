@@ -1,5 +1,4 @@
 ﻿using Persons.DTOs;
-
 namespace Persons.Models;
 
 public class Country
@@ -41,4 +40,8 @@ public class Country
 
     }
 
+    public override int GetHashCode()
+    {
+       return base.GetHashCode();
+    }
 }

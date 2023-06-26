@@ -24,3 +24,6 @@ D:\Projects\Github\Persons\Persons\obj\Debug\net6.0\refint\Persons.dll
 D:\Projects\Github\Persons\Persons\obj\Debug\net6.0\Persons.pdb
 D:\Projects\Github\Persons\Persons\obj\Debug\net6.0\Persons.genruntimeconfig.cache
 D:\Projects\Github\Persons\Persons\obj\Debug\net6.0\ref\Persons.dll
+D:\Projects\Github\Persons\Persons\bin\Debug\net6.0\Persons.staticwebassets.runtime.json
+D:\Projects\Github\Persons\Persons\obj\Debug\net6.0\Persons.RazorAssemblyInfo.cache
+D:\Projects\Github\Persons\Persons\obj\Debug\net6.0\Persons.RazorAssemblyInfo.cs

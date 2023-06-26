@@ -2,7 +2,7 @@
 
 namespace Persons.Services;
 
-interface ICountriesService
+public interface ICountriesService
 {
 
     /// <summary>
@@ -26,5 +26,11 @@ interface ICountriesService
     /// <param name="countryAddRequest">accepts a countryAddRequest to be added</param>
     /// <returns>returns  CountryResponse after adding it to the collection (including newly generated ID), if it faild it throws an Exception</returns>
     CountryResponse AddCountry(CountryAddRequest? countryAddRequest);
+
+    /// <summary>
+    /// gets number of countries in the collection
+    /// </summary>
+    /// <returns>returns number of countries stored in the coolection</returns>
+    int CountriesCount();
 
 }

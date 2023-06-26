@@ -3,13 +3,28 @@ using Persons.Models;
 
 namespace Persons.Services;
 
+
 public class CountriesService : ICountriesService
 {
     private readonly List<Country> _countries;
 
-    public CountriesService()
+    public CountriesService(bool initialize = true)
     {
         _countries = new List<Country>();
+    
+        if(initialize)
+        {
+            _countries.Add(new Country() { Id = Guid.Parse("8775DA8E-36CA-4955-A1B4-91720341BEBB"), Name = "USA" });
+
+            _countries.Add(new Country() { Id = Guid.Parse("FD7CF373-9B82-407B-A870-0FEC07F9A7A1"), Name = "UK" });
+
+            _countries.Add(new Country() { Id = Guid.Parse("556125E7-2CBF-4D50-B1EE-605174794860"), Name = "Canada" });
+
+            _countries.Add(new Country() { Id = Guid.Parse("110695FC-B97A-4869-BC43-370AF10F7E46"), Name = "Egypt" });
+
+            _countries.Add(new Country() { Id = Guid.Parse("7455AEE4-5668-4FE9-BDB2-44CFE3DCCC15"), Name = "France" });
+        }
+
     }
 
     public CountryResponse AddCountry(CountryAddRequest? countryAddRequest)
@@ -64,8 +79,5 @@ public class CountriesService : ICountriesService
     {
         return _countries.Count;
     }
-
-
-
 
 }

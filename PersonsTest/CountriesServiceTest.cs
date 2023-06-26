@@ -7,11 +7,11 @@ namespace PersonsTest;
 
 public class CountriesServiceTest
 {
-    private readonly CountriesService _countriesService;
+    private readonly ICountriesService _countriesService;
 
     public CountriesServiceTest()
     {
-        _countriesService =new CountriesService();
+        _countriesService =new CountriesService(false);
     }
 
 

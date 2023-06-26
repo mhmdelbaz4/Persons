@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "NReBi0yUF6QDwF19Fr5KhGBouwFXcW2RCLRM4EmfXgE=",
+  "Hash": "EwYqDYQEnXYHdpxvLWKmALCjNhVKx/bIX2MH7KbqzOs=",
   "Source": "Persons",
   "BasePath": "_content/Persons",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Persons\\wwwroot",
+      "Source": "Persons",
+      "ContentRoot": "D:\\Projects\\Github\\Persons\\Persons\\wwwroot\\",
+      "BasePath": "_content/Persons",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Projects\\Github\\Persons\\Persons\\wwwroot\\StyleSheet.css",
+      "SourceId": "Persons",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\Github\\Persons\\Persons\\wwwroot\\",
+      "BasePath": "_content/Persons",
+      "RelativePath": "StyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\StyleSheet.css"
+    }
+  ]
 }
