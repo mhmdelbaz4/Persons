@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "Z+0S+iRC6Q+qxJB+MYcFXovP5KuFEbS3ZyGoOZM0UWE=",
+  "Hash": "LI71KLaEbgo8BBy2Hr4v6NIYJncERWC7hxyKCqtVHyA=",
   "Source": "PersonsWebApp",
   "BasePath": "_content/PersonsWebApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "PersonsWebApp\\wwwroot",
+      "Source": "PersonsWebApp",
+      "ContentRoot": "D:\\Projects\\Github\\Persons\\Persons\\PersonsWebApp\\wwwroot\\",
+      "BasePath": "_content/PersonsWebApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Projects\\Github\\Persons\\Persons\\PersonsWebApp\\wwwroot\\StyleSheet.css",
+      "SourceId": "PersonsWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\Github\\Persons\\Persons\\PersonsWebApp\\wwwroot\\",
+      "BasePath": "_content/PersonsWebApp",
+      "RelativePath": "StyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\StyleSheet.css"
+    }
+  ]
 }

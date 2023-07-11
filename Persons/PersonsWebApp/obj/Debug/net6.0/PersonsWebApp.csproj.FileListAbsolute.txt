@@ -24,3 +24,4 @@ D:\Projects\Github\Persons\Persons\PersonsWebApp\obj\Debug\net6.0\refint\Persons
 D:\Projects\Github\Persons\Persons\PersonsWebApp\obj\Debug\net6.0\PersonsWebApp.pdb
 D:\Projects\Github\Persons\Persons\PersonsWebApp\obj\Debug\net6.0\PersonsWebApp.genruntimeconfig.cache
 D:\Projects\Github\Persons\Persons\PersonsWebApp\obj\Debug\net6.0\ref\PersonsWebApp.dll
+D:\Projects\Github\Persons\Persons\PersonsWebApp\bin\Debug\net6.0\PersonsWebApp.staticwebassets.runtime.json
