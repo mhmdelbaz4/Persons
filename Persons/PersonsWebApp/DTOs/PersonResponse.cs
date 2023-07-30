@@ -1,11 +1,11 @@
 ﻿using PersonsWebApp.Enums;
 using PersonsWebApp.Models;
-using System.ComponentModel.DataAnnotations;
 
 namespace PersonsWebApp.DTOs;
 
 public class PersonResponse
 {
+
     public Guid Id { get; set; }
     public string? Name { get; set; }
     public string? Email { get; set; }
@@ -18,19 +18,21 @@ public class PersonResponse
     public string? CountryName { get; set; }
 
 
-    public static explicit operator PersonResponse(Person person)
+    public static explicit operator PersonResponse(Person? person)
     {
+        ArgumentNullException.ThrowIfNull(person);
+
         PersonResponse personResponse = new PersonResponse()
         {
             Id = person.Id,
             Name = person.Name,
             Address = person.Address,
             DateOfBirth = person.DateOfBirth,
-            Age = person.Age,
+            Age =(person.DateOfBirth.HasValue) ? (int) ((DateTime.Now - person.DateOfBirth).Value.TotalDays / 365.25)  : 0,
             Gender = person.Gender,
             Email = person.Email,
             ReceivesNewsLetter = person.ReceivesNewsLetter,   
-            CountryId = person.CountryId
+            CountryId = person.CountryId,
         };
 
         return personResponse;  

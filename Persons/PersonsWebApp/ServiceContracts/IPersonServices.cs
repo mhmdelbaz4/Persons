@@ -59,14 +59,12 @@ public interface IPersonServices
     IEnumerable<PersonResponse> GetFilteredPersons(string searchBy ,string? searchText);
 
     /// <summary>
-    /// sorts a collection of persons based on a property and value 
+    /// sorts a collection of persons based on a property
     /// </summary>
     /// <param name="persons">persons collection you wanna sort</param>
     /// <param name="sortBy">the property you wanna sort the collection by</param>
-    /// <param name="searchText">the value that filter the collection</param>
     /// <param name="sortOptions">Asc or Desc</param>
-    /// <returns>returns a collection of personResponse after sorting it by a specific property and value</returns>
-    IEnumerable<PersonResponse> GetSortedPersons(IEnumerable<PersonResponse> persons, string sortBy,
-                                                string? searchText, sortOptions sortOptions);
+    /// <returns>returns a collection of personResponse after sorting it by a specific property</returns>
+    IEnumerable<PersonResponse> GetSortedPersons(IEnumerable<PersonResponse> persons, string sortBy,sortOptions sortOptions);
 
 }

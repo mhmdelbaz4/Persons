@@ -12,7 +12,7 @@ public class CountriesServicesTest
 
     public CountriesServicesTest()
     {
-        _countriesServices = new CountriesServices();
+        _countriesServices = new CountriesServices(false);
     }
 
 

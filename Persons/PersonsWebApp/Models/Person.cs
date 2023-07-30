@@ -10,7 +10,6 @@ public class Person
     public string? Email { get; set; }
     public string? Address { get; set; }
     public DateTime? DateOfBirth { get; set; }
-    public int Age { get; set; }
     public GenderOptions? Gender { get; set; }
     public bool? ReceivesNewsLetter { get; set; }
     public Guid? CountryId { get; set; }
@@ -29,7 +28,6 @@ public class Person
             Email = personRequest.Email,
             Gender = personRequest.Gender,
             ReceivesNewsLetter = personRequest.ReceivesNewsLetter,
-            Age =(int) ((DateTime.Now - personRequest.DateOfBirth).GetValueOrDefault().TotalDays / 365.25),
             CountryId = personRequest.CountryId
         };
 
@@ -52,7 +50,6 @@ public class Person
         }
 
         bool isEqual = this.Name == other.Name
-                       && this.Age == other.Age
                        && this.Address == other.Address
                        && this.Email == other.Email
                        && this.ReceivesNewsLetter == other.ReceivesNewsLetter

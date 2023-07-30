@@ -300,6 +300,12 @@ a.link-hover:hover {
     font-size: 101%;
 }
 
+.button-dark-red {
+    background-color: darkred;
+    color: darkred;
+    border: 2px solid #3f80ca;
+}
+
 .button-blue-back {
     background-color: #3a81bd;
     color: #ffffff;

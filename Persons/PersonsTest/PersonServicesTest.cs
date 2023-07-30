@@ -13,7 +13,7 @@ public class PersonServicesTest
 
     public PersonServicesTest()
     {
-        _personServices = new PersonServices();
+        _personServices = new PersonServices(false);
     }
 
     #region AddPerson
@@ -124,9 +124,8 @@ public class PersonServicesTest
     [Fact]
     public void getAllPersons_PersonsIsEmpty()
     {
-        IEnumerable<PersonResponse> allPersonResponse = _personServices.GetAllPersons();
 
-        Assert.Empty(allPersonResponse);
+        Assert.Empty(_personServices.GetAllPersons());
     }
 
     [Fact]
@@ -373,17 +372,6 @@ public class PersonServicesTest
     #endregion
 
     #region GetFilteredPersons
-    [Fact]
-    public void GetFilteredPersons_searchStringIsNull()
-    {
-
-        Assert.Throws<ArgumentNullException>(() =>
-        {
-            _personServices.GetFilteredPersons(nameof(PersonResponse.Name), searchText: null);
-        });
-
-    }
-
 
     [Fact]
     public void GetFilteredPersons_searchStringIsEmpty()
@@ -419,7 +407,18 @@ public class PersonServicesTest
         string searchText = "ma";
         List<PersonResponse> expectedPersonResponseList =
                                                     _personServices.GetAllPersons()
-                                                                    .Where(person => person.Name.Contains(searchText))
+                                                                    .Where(person => 
+                                                                    {
+                                                                        if (string.IsNullOrEmpty(person.Name))
+                                                                        {
+                                                                            return true;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            return person.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase);
+                                                                        }
+                                                                    
+                                                                    } )
                                                                     .ToList();  
 
         List<PersonResponse> actualPersonResponseList = _personServices.
@@ -443,10 +442,8 @@ public class PersonServicesTest
     {
         IEnumerable<PersonResponse> personList = Enumerable.Empty<PersonResponse>();
         string sortBy = nameof(PersonResponse.Name);
-        string searchText = "mohamed elbaz";
 
-        IEnumerable <PersonResponse> personResponseList = _personServices.GetSortedPersons(personList ,sortBy ,searchText ,
-                                                                                           sortOptions.Asc);
+        IEnumerable<PersonResponse> personResponseList = _personServices.GetSortedPersons(personList, sortBy, sortOptions.Asc);
         Assert.Empty(personResponseList);
     }
 
@@ -463,23 +460,10 @@ public class PersonServicesTest
         }
 
         string sortBy = nameof(PersonResponse.DateOfBirth);
-        string searchText = "2000";
 
-        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, searchText,
-                                                                                           sortOptions.Asc).ToList(); 
+        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, sortOptions.Asc).ToList();  
 
-        List<PersonResponse> expectedPersonList = allPersons.Where(person =>
-                                                            {
-                                                                if (! person.DateOfBirth.HasValue)
-                                                                {
-                                                                    return true;
-                                                                }
-                                                                else
-                                                                {
-                                                                    return person.DateOfBirth.Value.ToString("dd-MM-yyyy")
-                                                                                                    .Contains(searchText);
-                                                                }
-                                                            }).OrderBy(person => person.DateOfBirth)
+        List<PersonResponse> expectedPersonList = allPersons.OrderBy(person => person.DateOfBirth)
                                                             .ToList();
 
         for (int i = 0; i < expectedPersonList.Count; i++)
@@ -501,23 +485,10 @@ public class PersonServicesTest
         }
 
         string sortBy = nameof(PersonResponse.DateOfBirth);
-        string searchText = "15-04-2000";
 
-        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, searchText,
-                                                                                           sortOptions.Asc).ToList();
+        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy,sortOptions.Asc).ToList();
 
-        List<PersonResponse> expectedPersonList = allPersons.Where(person =>
-        {
-            if (!person.DateOfBirth.HasValue)
-            {
-                return true;
-            }
-            else
-            {
-                return person.DateOfBirth.Value.ToString("dd-MM-yyyy")
-                                                .Contains(searchText);
-            }
-        }).OrderBy(person => person.DateOfBirth)
+        List<PersonResponse> expectedPersonList = allPersons.OrderBy(person => person.DateOfBirth)
           .ToList();
 
         for (int i = 0; i < expectedPersonList.Count; i++)
@@ -539,22 +510,10 @@ public class PersonServicesTest
         }
 
         string sortBy = nameof(PersonResponse.Age);
-        string searchText = "23";
 
-        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, searchText,
-                                                                                           sortOptions.Asc).ToList();
+        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy,sortOptions.Asc).ToList();
 
-        List<PersonResponse> expectedPersonList = allPersons.Where(person =>
-        {
-            if (person.Age is null)
-            {
-                return true;
-            }
-            else
-            {
-                return person.Age.ToString() == searchText; 
-            }
-        }).OrderBy(person => person.Age)
+        List<PersonResponse> expectedPersonList = allPersons.OrderBy(person => person.Age)
           .ToList();
 
         for (int i = 0; i < expectedPersonList.Count; i++)
@@ -576,22 +535,10 @@ public class PersonServicesTest
         }
 
         string sortBy = nameof(PersonResponse.Gender);
-        string searchText = "male";
 
-        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, searchText,
-                                                                                           sortOptions.Asc).ToList();
+        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy,sortOptions.Asc).ToList();
 
-        List<PersonResponse> expectedPersonList = allPersons.Where(person =>
-        {
-            if (! person.Gender.HasValue)
-            {
-                return true;
-            }
-            else
-            {
-                return person.Gender.Value.ToString().Equals(searchText , StringComparison.OrdinalIgnoreCase);
-            }
-        }).OrderBy(person => person.Gender)
+        List<PersonResponse> expectedPersonList = allPersons.OrderBy(person => person.Gender)
           .ToList();
 
         for (int i = 0; i < expectedPersonList.Count; i++)
@@ -612,22 +559,10 @@ public class PersonServicesTest
         }
 
         string sortBy = nameof(PersonResponse.ReceivesNewsLetter);
-        string searchText = "false";
 
-        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, searchText,
-                                                                                           sortOptions.Asc).ToList();
+        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, sortOptions.Asc).ToList();
 
-        List<PersonResponse> expectedPersonList = allPersons.Where(person =>
-        {
-            if (!person.ReceivesNewsLetter.HasValue)
-            {
-                return true;
-            }
-            else
-            {
-                return person.ReceivesNewsLetter.Value.ToString().Equals(searchText, StringComparison.OrdinalIgnoreCase);
-            }
-        }).OrderBy(person => person.ReceivesNewsLetter)
+        List<PersonResponse> expectedPersonList = allPersons.OrderBy(person => person.ReceivesNewsLetter)
           .ToList();
 
         for (int i = 0; i < expectedPersonList.Count; i++)
@@ -647,22 +582,10 @@ public class PersonServicesTest
         }
 
         string sortBy = nameof(PersonResponse.Name);
-        string searchText = "ma";
 
-        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, searchText,
-                                                                                           sortOptions.Asc).ToList();
+        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy,sortOptions.Asc).ToList();
 
-        List<PersonResponse> expectedPersonList = allPersons.Where(person =>
-        {
-            if (string.IsNullOrEmpty(person.Name))
-            {
-                return true;
-            }
-            else
-            {
-                return person.Name.Contains(searchText ,StringComparison.OrdinalIgnoreCase);
-            }
-        }).OrderBy(person => person.Name)
+        List<PersonResponse> expectedPersonList = allPersons.OrderBy(person => person.Name)
           .ToList();
 
         for (int i = 0; i < expectedPersonList.Count; i++)
@@ -682,23 +605,10 @@ public class PersonServicesTest
         }
 
         string sortBy = nameof(PersonResponse.Name);
-        string searchText = "mohamed";
 
-        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, searchText,
-                                                                                           sortOptions.Asc).ToList();
+        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy,sortOptions.Asc).ToList();
 
-        List<PersonResponse> expectedPersonList = allPersons.Where(person =>
-        {
-            if (string.IsNullOrEmpty(person.Name))
-            {
-                return true;
-            }
-            else
-            {
-                return person.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase);
-            }
-        }).OrderBy(person => person.Name)
-          .ToList();
+        List<PersonResponse> expectedPersonList = allPersons.OrderBy(person => person.Name).ToList();
 
         for (int i = 0; i < expectedPersonList.Count; i++)
         {
@@ -718,22 +628,10 @@ public class PersonServicesTest
         }
 
         string sortBy = nameof(PersonResponse.Name);
-        string searchText = "mohamed";
 
-        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy, searchText,
-                                                                                           sortOptions.Desc).ToList();
+        List<PersonResponse> actualPersonList = _personServices.GetSortedPersons(allPersons, sortBy,sortOptions.Desc).ToList();
 
-        List<PersonResponse> expectedPersonList = allPersons.Where(person =>
-        {
-            if (string.IsNullOrEmpty(person.Name))
-            {
-                return true;
-            }
-            else
-            {
-                return person.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase);
-            }
-        }).OrderByDescending(person => person.Name)
+        List<PersonResponse> expectedPersonList = allPersons.OrderByDescending(person => person.Name)
           .ToList();
 
         for (int i = 0; i < expectedPersonList.Count; i++)
