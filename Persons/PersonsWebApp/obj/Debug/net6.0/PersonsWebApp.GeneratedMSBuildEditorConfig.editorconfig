@@ -5,33 +5,36 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PersonsWebApp
 build_property.RootNamespace = PersonsWebApp
-build_property.ProjectDir = D:\Projects\Github\Persons\Persons\PersonsWebApp\
+build_property.ProjectDir = /home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Projects\Github\Persons\Persons\PersonsWebApp
+build_property.MSBuildProjectDirectory = /home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Projects/Github/Persons/Persons/PersonsWebApp/Views/Persons/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uc1xJbmRleC5jc2h0bWw=
+[/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/Views/Persons/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVyc29ucy9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/Github/Persons/Persons/PersonsWebApp/Views/Shared/_ColumnHeader.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db2x1bW5IZWFkZXIuY3NodG1s
+[/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/Views/Persons/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVyc29ucy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/Github/Persons/Persons/PersonsWebApp/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+[/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/Views/Shared/_ColumnHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Db2x1bW5IZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/Github/Persons/Persons/PersonsWebApp/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/Github/Persons/Persons/PersonsWebApp/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

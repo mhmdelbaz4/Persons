@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LI71KLaEbgo8BBy2Hr4v6NIYJncERWC7hxyKCqtVHyA=",
+  "Hash": "XA9DvYbrNLF8yWawAp2GlucGCGSQxzNwuPQxV3DQlEA=",
   "Source": "PersonsWebApp",
   "BasePath": "_content/PersonsWebApp",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "PersonsWebApp\\wwwroot",
+      "Name": "PersonsWebApp/wwwroot",
       "Source": "PersonsWebApp",
-      "ContentRoot": "D:\\Projects\\Github\\Persons\\Persons\\PersonsWebApp\\wwwroot\\",
+      "ContentRoot": "/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/wwwroot/",
       "BasePath": "_content/PersonsWebApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\Projects\\Github\\Persons\\Persons\\PersonsWebApp\\wwwroot\\StyleSheet.css",
+      "Identity": "/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/wwwroot/StyleSheet.css",
       "SourceId": "PersonsWebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projects\\Github\\Persons\\Persons\\PersonsWebApp\\wwwroot\\",
+      "ContentRoot": "/home/elbaz/Projects/gitHub/Persons/Persons/PersonsWebApp/wwwroot/",
       "BasePath": "_content/PersonsWebApp",
       "RelativePath": "StyleSheet.css",
       "AssetKind": "All",
@@ -31,7 +31,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\StyleSheet.css"
+      "OriginalItemSpec": "wwwroot/StyleSheet.css"
     }
   ]
 }

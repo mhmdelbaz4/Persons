@@ -301,7 +301,7 @@ public class PersonServices : IPersonServices
             case nameof(PersonResponse.Age):
                 filteredPersonResponseList = allPersons.Where(person =>
                 {
-                    if (person.Age == 0)
+                    if (person.Age == 0 || person.Age == null)
                     {
                         return true;
                     }

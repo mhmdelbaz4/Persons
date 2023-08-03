@@ -9,15 +9,17 @@ namespace PersonsWebApp.Controllers
     public class PersonsController : Controller
     {
         private readonly IPersonServices _personServices;
+        private readonly ICountriesServices _countriesServices;
 
-        public PersonsController(IPersonServices personServices)
+        public PersonsController(IPersonServices personServices ,ICountriesServices countriesServices)
         {
             _personServices = personServices;            
+            _countriesServices = countriesServices;
         }
 
 
         [Route("/")]
-        [Route("/Persons/Index")]
+        [Route("Persons/Index")]
         public IActionResult Index(string? searchText , string searchBy = nameof(PersonResponse.Name) ,
                                    string sortBy = nameof(PersonResponse.Name) , sortOptions sortOption = sortOptions.Asc)
         {
@@ -44,6 +46,38 @@ namespace PersonsWebApp.Controllers
             ViewBag.CurrentSortOptions = sortOption;
 
             return View(sortedPersons);
+        }
+
+
+
+        [HttpGet]
+        [Route("persons/create")]
+        public IActionResult Create()
+        {
+            ViewBag.Countries = _countriesServices.GetAllCountries().ToList();
+
+            return View();
+        }
+
+        [HttpPost]
+        [Route("persons/create")]
+        public IActionResult Create(PersonRequest personRequest)
+        {
+            if(! ModelState.IsValid)
+            {
+
+                ViewBag.Countries = _countriesServices.GetAllCountries().ToList();
+               
+                ViewBag.Errors = ModelState.Values.SelectMany(e => e.Errors)
+                                                   .SelectMany(e => e.ErrorMessage) 
+                                                   .ToList();
+
+                return View();
+            }
+
+            _personServices.AddPerson(personRequest);
+
+            return RedirectToAction(nameof(Index));
         }
     }   
 }
