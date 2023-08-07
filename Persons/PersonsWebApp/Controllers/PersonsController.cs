@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PersonsWebApp.DTOs;
 using PersonsWebApp.Enums;
 using PersonsWebApp.ServiceContracts;
@@ -26,7 +27,7 @@ namespace PersonsWebApp.Controllers
             List<PersonResponse> persons = _personServices.GetFilteredPersons(searchBy,searchText).ToList();
             List<PersonResponse> sortedPersons = _personServices.GetSortedPersons(persons,sortBy,sortOption).ToList();
 
-            Dictionary<string ,string> PersonPropertiesDict = new Dictionary<string, string>()
+            Dictionary<string ,string> PersonPropertiesDict = new ()
             {
                 {nameof(PersonResponse.Name) , "Person Name"},
                 { nameof(PersonResponse.Email) , "Email"},
@@ -54,7 +55,12 @@ namespace PersonsWebApp.Controllers
         [Route("persons/create")]
         public IActionResult Create()
         {
-            ViewBag.Countries = _countriesServices.GetAllCountries().ToList();
+            
+            ViewBag.Countries = _countriesServices.GetAllCountries()
+                                                .Select(country => new SelectListItem()
+                                                {
+                                                    Text = country.Name ,Value =country.Id.ToString()
+                                                });
 
             return View();
         }
@@ -66,10 +72,14 @@ namespace PersonsWebApp.Controllers
             if(! ModelState.IsValid)
             {
 
-                ViewBag.Countries = _countriesServices.GetAllCountries().ToList();
-               
+                ViewBag.Countries =_countriesServices.GetAllCountries()
+                                                .Select(country => new SelectListItem()
+                                                {
+                                                    Text = country.Name ,Value =country.Id.ToString()
+                                                });
+
                 ViewBag.Errors = ModelState.Values.SelectMany(e => e.Errors)
-                                                   .SelectMany(e => e.ErrorMessage) 
+                                                   .Select(e => e.ErrorMessage) 
                                                    .ToList();
 
                 return View();

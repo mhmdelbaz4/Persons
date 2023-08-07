@@ -1,53 +1,59 @@
+@model PersonRequest
+
 @{
     ViewBag.Title ="Create person";
 }
-<a href="~/persons/index" class="link-hover">Back to list</a>
+
+<a asp-controller="Persons" asp-action="Index" class="link-hover">Back to list</a>
 
 <h1>Create person</h1>  
 
 
 <div class="w-50">
-    <form action="~/persons/create" method="post">
+    <form asp-controller="Persons" asp-action="Create" method="post">
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="Name" class="form-label pt">Name</label>
+                <label asp-for="Name" class="form-label pt">Name</label>
             </div>
             <div class="flex-1">
-                <input class="form-input" id="Name" name="Name" type="text">
+                <input asp-for="Name" class="form-input" >
+                <span asp-validation-for="Name" class="text-red"></span>
             </div>
         </div>
 
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="Email" class="form-label pt">Email</label>
+                <label asp-for="Email" class="form-label pt">Email</label>
             </div>
             <div class="flex-1">
-                <input class="form-input" id="Email" name="Email" type="email">
+                <input asp-for="Email" class="form-input" >
+                <span asp-validation-for="Email" class="text-red"></span>
             </div>
         </div>
 
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="DateOfBirth" class="form-label pt">BirthDate</label>
+                <label asp-for="DateOfBirth" class="form-label pt">BirthDate</label>
             </div>
             <div class="flex-1">
-                <input class="form-input" id="DateOfBirth" name="DateOfBirth" type="date">
+                <input asp-for="DateOfBirth" class="form-input" >
+                <span asp-validation-for="DateOfBirth" class="text-red"></span>
             </div>
         </div>
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="Gender" class="form-label">Gender</label>
+                <label asp-for="Gender" class="form-label">Gender</label>
             </div>
             <div class="flex-1">
-                <input type="radio" id="Male" value="Male" name="Gender" >
+                <input type="radio" asp-for="Gender" value="Male" >
                 <label for="Male">Male</label>
-                <input type="radio" id="Female" value="Female" name="Gender">
+                <input type="radio"  asp-for="Gender" id="Female" value="Female">
                 <label for="Female">Female</label>
-                <input type="radio" id="Other" value="Other" name="Gender">
+                <input type="radio"  asp-for="Gender" id="Other" value="Other">
                 <label for="Other">Other</label>
             </div>
         </div>
@@ -55,25 +61,21 @@
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="CountryId" class="form-label pt">Country</label>
+                <label asp-for="CountryId" class="form-label pt">Country</label>
             </div>
             <div class="flex-1">
-                <select name="CountryId" id="CountryId" class="form-input"> 
+                <select asp-for="CountryId" asp-items="@ViewBag.Countries" class="form-input"> 
                     <option value="">Select a country please..</option>
-                    @foreach (CountryResponse country in ViewBag.Countries)
-                    {
-                        <option value="@country.Id">@country.Name</option>
-                    }
                 </select>
             </div>
         </div>
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="Address" class="form-label pt">Address</label>
+                <label asp-for="Address" class="form-label pt">Address</label>
             </div>
             <div class="flex-1">
-                <textarea id="Address" name="Address" class="form-input"> </textarea>
+                <textarea asp-for="Address" class="form-input"> </textarea>
             </div>
         </div>
 
@@ -81,8 +83,8 @@
             <div class="w-25">
             </div>
             <div class="flex-1">
-                <input type="checkbox" id="RecieveNewsLetter" name="RecieveNewsLetter" value="true"/> 
-                <label for="RecieveNewsLetter" class="form-label pt">RecieveNewsLetter</label>
+                <input type="radio" asp-for="ReceivesNewsLetter" value="true"/> 
+                <label asp-for="ReceivesNewsLetter" class="form-label pt">Receive News Letter</label>
             </div>
         </div>
 
@@ -98,7 +100,7 @@
         {
             <div class="text-red ml">
                 <ul>
-                    @foreach (string errorMessage in ViewBag.Errors)
+                    @foreach (var errorMessage in ViewBag.Errors)
                     {
                         <li class="ml">@errorMessage</li>
                     }
@@ -108,3 +110,12 @@
 
     </form>
 </div>
+
+@section scripts
+{
+    <script src="~/jquery.min.js"></script>
+    <script src="~/jquery.validate.min.js"></script>
+    <script src="~/jquery.validate.unobtrusive.min.js"></script>
+}
+
+

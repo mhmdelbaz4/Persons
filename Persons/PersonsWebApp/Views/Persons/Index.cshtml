@@ -5,9 +5,9 @@
 }
 
 <h1>Persons</h1>
-<a href="~/persons/create">Create Person</a>
+<a asp-controller="Persons" asp-action="Create">Create Person</a>
 
-<form action="~/Persons/Index" method="get">
+<form asp-controller="Persons" asp-action="Index" method="get">
     <div class="box flex">
         <div class="flex-1" >
             <select class="form-input" name="searchBy">
@@ -31,7 +31,7 @@
 
         <div class="flex-1">
             <button class="button button-blue-back">Search</button>
-            <button class="button button-dark-red">Clear</button>
+            <a href="~/Persons/Index">Clear</a>
         </div>
 
     </div>
