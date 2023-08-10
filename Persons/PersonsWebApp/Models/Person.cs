@@ -19,7 +19,7 @@ public class Person
     {
         ArgumentNullException.ThrowIfNull(personRequest, nameof(personRequest));
 
-        Person person = new Person()
+        Person person = new ()
         {
             Id = Guid.NewGuid(),
             Name = personRequest.Name,
@@ -29,6 +29,25 @@ public class Person
             Gender = personRequest.Gender,
             ReceivesNewsLetter = personRequest.ReceivesNewsLetter,
             CountryId = personRequest.CountryId
+        };
+
+        return person;
+    }
+
+    public static explicit operator Person(PersonUpdateRequest? personUpdateRequest)
+    {
+        ArgumentNullException.ThrowIfNull(personUpdateRequest, nameof(personUpdateRequest));
+
+        Person person = new ()
+        {
+            Id = personUpdateRequest.Id,
+            Name = personUpdateRequest.Name,
+            Address = personUpdateRequest.Address,
+            DateOfBirth = personUpdateRequest.DateOfBirth,
+            Email = personUpdateRequest.Email,
+            Gender = personUpdateRequest.Gender,
+            ReceivesNewsLetter = personUpdateRequest.ReceivesNewsLetter,
+            CountryId = personUpdateRequest.CountryId
         };
 
         return person;

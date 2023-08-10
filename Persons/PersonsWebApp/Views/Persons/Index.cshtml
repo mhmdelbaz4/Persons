@@ -111,14 +111,17 @@
         @foreach (PersonResponse person in Model)
         {
             <tr>
-                <td style="width:10%">@person.Name</td>
-                <td style="width:15%">@person.Email</td>
-                <td style="width:15%">@person.Address</td>
-                <td style="width:10%">@person.Gender</td>
-                <td style="width:15%">@person.DateOfBirth?.ToString("dd/MM/yyyy")</td>
-                <td style="width:10%">@person.Age</td>
-                <td style="width:10%">@person.CountryName</td>
-                <td style="width:15%">@person.ReceivesNewsLetter</td>
+                <td>@person.Name</td>
+                <td>@person.Email</td>
+                <td>@person.Address</td>
+                <td>@person.Gender</td>
+                <td>@person.DateOfBirth?.ToString("dd/MM/yyyy")</td>
+                <td>@person.Age</td>
+                <td>@person.CountryName</td>
+                <td style="width: 10%;">@person.ReceivesNewsLetter</td>
+                <td>
+                    <a href="~/Persons/Edit/@person.Id">Edit</a>
+                </td>
             </tr>
         }
     </tbody>

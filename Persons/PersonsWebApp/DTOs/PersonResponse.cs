@@ -1,4 +1,5 @@
-﻿using PersonsWebApp.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using PersonsWebApp.Enums;
 using PersonsWebApp.Models;
 
 namespace PersonsWebApp.DTOs;
@@ -10,6 +11,8 @@ public class PersonResponse
     public string? Name { get; set; }
     public string? Email { get; set; }
     public string? Address { get; set; }
+    
+    [DataType(DataType.Date)]
     public DateTime? DateOfBirth { get; set; }
     public int? Age { get; set; }
     public GenderOptions? Gender { get; set; }

@@ -211,7 +211,7 @@ public class PersonServices : IPersonServices
             return allPersons;
         }
 
-        List<PersonResponse> filteredPersonResponseList = new List<PersonResponse>();  
+        List<PersonResponse> filteredPersonResponseList = new();  
         switch (searchBy)
         {
             case nameof(PersonResponse.Name):
@@ -332,14 +332,14 @@ public class PersonServices : IPersonServices
 
     }
 
-    public PersonResponse GetPersonById(Guid? personId)
+    public PersonResponse? GetPersonById(Guid? personId)
     {
         ArgumentNullException.ThrowIfNull(personId, nameof(personId));
 
         Person? person = _persons.Where(person => person.Id == personId).FirstOrDefault();
         if (person == null)
         {
-            throw new ArgumentException("person Id is incorrect");
+            return null;
         }
 
         PersonResponse personResponse = convertFromPersonToPersonResponse(person);
@@ -355,7 +355,7 @@ public class PersonServices : IPersonServices
         if (string.IsNullOrEmpty(sortBy))
             return persons;
 
-        List<PersonResponse> sortedPersons = new List<PersonResponse> ();   
+        List<PersonResponse> sortedPersons = new ();   
             
             
         switch(sortBy , sortOptions)
@@ -437,32 +437,25 @@ public class PersonServices : IPersonServices
 
     }
 
-    public PersonResponse UpdatePerson(Guid? personId, PersonRequest? personRequest)
+    public PersonResponse? UpdatePerson(PersonUpdateRequest? updatedPerson)
     {
-        ArgumentNullException.ThrowIfNull(personId, nameof(personId));
+        if(updatedPerson is  null)
+            return null;
 
-        ArgumentNullException.ThrowIfNull(personRequest, nameof(personRequest));
+        Person? person = _persons.FirstOrDefault(person => person.Id == updatedPerson.Id);
+        
+        if(person is  null)
+            return null;
 
-        Person? person = _persons.Where(person => person.Id == personId).FirstOrDefault();
-        if (person == null)
-        {
-            throw new ArgumentException("person Id is incorrect");
-        }
+        ModelValidation.Validate(updatedPerson);
 
-        ModelValidation.Validate(personRequest);
-
-        if(_persons.Contains( (Person) personRequest))
-        {
-            throw new ArgumentException("this person with this information is already exists");
-        }
-
-        person.Name = personRequest.Name;
-        person.Email = personRequest.Email;
-        person.Address = personRequest.Address;
-        person.Gender = personRequest.Gender;
-        person.CountryId = personRequest.CountryId;
-        person.ReceivesNewsLetter = personRequest.ReceivesNewsLetter;
-        person.DateOfBirth = personRequest.DateOfBirth;
+        person.Name = updatedPerson.Name;
+        person.Email = updatedPerson.Email;
+        person.Address = updatedPerson.Address;
+        person.Gender = updatedPerson.Gender;
+        person.CountryId = updatedPerson.CountryId;
+        person.ReceivesNewsLetter = updatedPerson.ReceivesNewsLetter;
+        person.DateOfBirth = updatedPerson.DateOfBirth;
 
         
         PersonResponse personResponse = convertFromPersonToPersonResponse(person);

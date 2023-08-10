@@ -12,7 +12,7 @@ public interface IPersonServices
     /// <returns>returns a personResponse of the person whose Id equals to the given Id.
     ///           If Id is incorrect ,throws agruementException.
     ///           IfId is null ,throws arguementNullException. </returns>
-    PersonResponse GetPersonById(Guid? personId);
+    PersonResponse? GetPersonById(Guid? personId);
 
 
     /// <summary>
@@ -38,7 +38,7 @@ public interface IPersonServices
     /// <param name="personRequest">the new person data you wanna replace the old one with it</param>
     /// <returns>returns a personRespone after updatin the existing persons.
     ///           if the personId is incorrect or the new person data is invalid ,throws arguementException</returns>
-    PersonResponse UpdatePerson(Guid? personId, PersonRequest? personRequest);
+    PersonResponse? UpdatePerson(PersonUpdateRequest updatedPerson);
 
 
     /// <summary>

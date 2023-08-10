@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using PersonsWebApp.DTOs;
 using PersonsWebApp.Enums;
 using PersonsWebApp.ServiceContracts;
-using System.Collections.Generic;
 
 namespace PersonsWebApp.Controllers
 {
@@ -89,5 +88,64 @@ namespace PersonsWebApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        [Route("Persons/Edit/{personId}")]
+        public IActionResult Edit(Guid? personId)
+        {
+            PersonResponse? personResponse = _personServices.GetPersonById(personId);
+            if(personResponse is null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Countries = _countriesServices.GetAllCountries()
+                                                   .Select(country => new SelectListItem()
+                                                   {
+                                                        Text = country.Name ,Value =country.Id.ToString()
+                                                   });
+
+
+            PersonUpdateRequest personUpdateRequest = new ()
+            {
+                Id = personResponse.Id,
+                Address = personResponse.Address,
+                Email = personResponse.Email,
+                Name = personResponse.Name,
+                DateOfBirth = personResponse.DateOfBirth,
+                CountryId = personResponse.CountryId,
+                Gender = personResponse.Gender,
+                ReceivesNewsLetter = personResponse.ReceivesNewsLetter
+            };
+
+            return View(personUpdateRequest);
+        }
+
+        [HttpPost]
+        [Route("persons/Edit")]
+        public IActionResult Edit(PersonUpdateRequest personUpdateRequest)
+        {
+            if(! ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values
+                                            .SelectMany(value => value.Errors)
+                                            .Select(error => error.ErrorMessage);
+
+
+                ViewBag.Countries = _countriesServices.GetAllCountries()
+                                                      .Select(country => new SelectListItem()
+                                                      {
+                                                         Text = country.Name , Value = country.Id.ToString()
+                                                      });
+
+
+                return View();
+            }
+
+            _personServices.UpdatePerson(personUpdateRequest);
+
+
+            return RedirectToAction(nameof(Index));
+        }        
     }   
 }

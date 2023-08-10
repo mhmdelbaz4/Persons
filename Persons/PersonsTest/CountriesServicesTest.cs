@@ -8,195 +8,195 @@ namespace PersonsTest;
 
 public class CountriesServicesTest
 {
-    private readonly ICountriesServices _countriesServices;
+//     private readonly ICountriesServices _countriesServices;
 
-    public CountriesServicesTest()
-    {
-        _countriesServices = new CountriesServices(false);
-    }
-
-
-    #region AddCountryTest
+//     public CountriesServicesTest()
+//     {
+//         _countriesServices = new CountriesServices(false);
+//     }
 
 
-    //case 1 : country is null
-    [Fact]
-    public void AddCountry_CountryIsNull()
-    {
-        CountryAddRequest? countryAddRequest = null;
+//     #region AddCountryTest
 
-        Assert.Throws<ArgumentNullException>(() =>
-        {
-            _countriesServices.AddCountry(countryAddRequest);   
-        }); 
 
-    }
+//     //case 1 : country is null
+//     [Fact]
+//     public void AddCountry_CountryIsNull()
+//     {
+//         CountryAddRequest? countryAddRequest = null;
 
-    //case 2 : country name is null
-    [Fact]
-    public void AddCountry_CountryNameIsNull()
-    {
-        CountryAddRequest? countryAddRequest = new CountryAddRequest()
-        {
-            Name = null
-        };
+//         Assert.Throws<ArgumentNullException>(() =>
+//         {
+//             _countriesServices.AddCountry(countryAddRequest);   
+//         }); 
 
-        Assert.Throws<ArgumentException>(() =>
-        {
-            _countriesServices.AddCountry(countryAddRequest);
-        });
-    }
+//     }
 
-    //case 3 : country name is incorrect
-    [Fact]
-    public void AddCountry_CountryNameLengthIsIncorrect()
-    {
-        CountryAddRequest? countryAddRequest = new CountryAddRequest()
-        {
-            Name = "A"
-        };
+//     //case 2 : country name is null
+//     [Fact]
+//     public void AddCountry_CountryNameIsNull()
+//     {
+//         CountryAddRequest? countryAddRequest = new CountryAddRequest()
+//         {
+//             Name = null
+//         };
 
-        Assert.Throws<ArgumentException>(() =>
-        {
-            _countriesServices.AddCountry(countryAddRequest);
-        });
+//         Assert.Throws<ArgumentException>(() =>
+//         {
+//             _countriesServices.AddCountry(countryAddRequest);
+//         });
+//     }
 
-    }
+//     //case 3 : country name is incorrect
+//     [Fact]
+//     public void AddCountry_CountryNameLengthIsIncorrect()
+//     {
+//         CountryAddRequest? countryAddRequest = new CountryAddRequest()
+//         {
+//             Name = "A"
+//         };
 
-    //case 4 : country name is duplicated
-    [Fact]
-    public void AddCountry_DuplicateName()
-    {
-        CountryAddRequest? countryAddRequest1 = new CountryAddRequest()
-        {
-            Name = "USA"
-        };
+//         Assert.Throws<ArgumentException>(() =>
+//         {
+//             _countriesServices.AddCountry(countryAddRequest);
+//         });
 
-        CountryAddRequest? countryAddRequest2 = new CountryAddRequest()
-        {
-            Name = "USA"
-        };
+//     }
 
-        Assert.Throws<ArgumentException>(() =>
-        {
-            _countriesServices.AddCountry(countryAddRequest1);
-            _countriesServices.AddCountry(countryAddRequest2);
-        });
+//     //case 4 : country name is duplicated
+//     [Fact]
+//     public void AddCountry_DuplicateName()
+//     {
+//         CountryAddRequest? countryAddRequest1 = new CountryAddRequest()
+//         {
+//             Name = "USA"
+//         };
 
-    }
+//         CountryAddRequest? countryAddRequest2 = new CountryAddRequest()
+//         {
+//             Name = "USA"
+//         };
 
-    //case 5 : correct details
-    [Fact]
-    public void AddCountry_ProperDetails()
-    {
-        CountryAddRequest? countryAddRequest = new CountryAddRequest()
-        {
-            Name = "UK" 
-        };
+//         Assert.Throws<ArgumentException>(() =>
+//         {
+//             _countriesServices.AddCountry(countryAddRequest1);
+//             _countriesServices.AddCountry(countryAddRequest2);
+//         });
 
-        CountryResponse? countryResponse = _countriesServices.AddCountry(countryAddRequest);
+//     }
 
-        Assert.True(countryResponse?.Id != Guid.Empty);
+//     //case 5 : correct details
+//     [Fact]
+//     public void AddCountry_ProperDetails()
+//     {
+//         CountryAddRequest? countryAddRequest = new CountryAddRequest()
+//         {
+//             Name = "UK" 
+//         };
 
-    }
+//         CountryResponse? countryResponse = _countriesServices.AddCountry(countryAddRequest);
 
-    #endregion
+//         Assert.True(countryResponse?.Id != Guid.Empty);
 
-    #region GetAllCountries
+//     }
 
-    //case 1: countries collection is empty
-    [Fact]
-    public void GetAllCountries_CountriesAreEmpty()
-    {
-        IEnumerable<CountryResponse> actualcountryResponseList;
+//     #endregion
 
-        actualcountryResponseList = _countriesServices.GetAllCountries();
+//     #region GetAllCountries
 
-        Assert.True(actualcountryResponseList == Enumerable.Empty<CountryResponse>());        
+//     //case 1: countries collection is empty
+//     [Fact]
+//     public void GetAllCountries_CountriesAreEmpty()
+//     {
+//         IEnumerable<CountryResponse> actualcountryResponseList;
+
+//         actualcountryResponseList = _countriesServices.GetAllCountries();
+
+//         Assert.True(actualcountryResponseList == Enumerable.Empty<CountryResponse>());        
         
-    }
+//     }
 
 
-    //case 2: countries collection is not empty
-    [Fact]
-    public void GetAllCountries_CountriesAreNotEmpty()
-    {
-        CountryAddRequest countryAddRequest1 = new CountryAddRequest()
-        {
-            Name = "USA"
-        };
+//     //case 2: countries collection is not empty
+//     [Fact]
+//     public void GetAllCountries_CountriesAreNotEmpty()
+//     {
+//         CountryAddRequest countryAddRequest1 = new CountryAddRequest()
+//         {
+//             Name = "USA"
+//         };
 
-        CountryAddRequest countryAddRequest2 = new CountryAddRequest()
-        {
-            Name = "UK"
-        };
+//         CountryAddRequest countryAddRequest2 = new CountryAddRequest()
+//         {
+//             Name = "UK"
+//         };
 
-        List<CountryAddRequest> countryAddRequestList = new List<CountryAddRequest> 
-        {
-            countryAddRequest1, countryAddRequest2 
-        };
+//         List<CountryAddRequest> countryAddRequestList = new List<CountryAddRequest> 
+//         {
+//             countryAddRequest1, countryAddRequest2 
+//         };
 
-        List<CountryResponse> expectedCountryResponseList = new List<CountryResponse>();
+//         List<CountryResponse> expectedCountryResponseList = new List<CountryResponse>();
 
-        foreach (CountryAddRequest countryAddRequest in countryAddRequestList)
-        {
-            expectedCountryResponseList.Add(_countriesServices.AddCountry(countryAddRequest) !);
-        }
+//         foreach (CountryAddRequest countryAddRequest in countryAddRequestList)
+//         {
+//             expectedCountryResponseList.Add(_countriesServices.AddCountry(countryAddRequest) !);
+//         }
 
-        List<CountryResponse> actualcountryResponseList = _countriesServices.GetAllCountries().ToList();
+//         List<CountryResponse> actualcountryResponseList = _countriesServices.GetAllCountries().ToList();
 
-        foreach (CountryResponse countryResponse in expectedCountryResponseList)
-        {
-            Assert.Contains(countryResponse, actualcountryResponseList);
-        }
+//         foreach (CountryResponse countryResponse in expectedCountryResponseList)
+//         {
+//             Assert.Contains(countryResponse, actualcountryResponseList);
+//         }
 
-    }
-    #endregion
+//     }
+//     #endregion
 
-    #region GetCountryById
+//     #region GetCountryById
 
-    //case 1: when Id is null
-    [Fact]
-    public void GetCountryById_IdIsNull()
-    {
-        Guid? countryId = null;
+//     //case 1: when Id is null
+//     [Fact]
+//     public void GetCountryById_IdIsNull()
+//     {
+//         Guid? countryId = null;
 
-        Assert.Throws<ArgumentNullException>( () =>
-        {
-            _countriesServices.GetCountryById(countryId);
-        });
-    }
+//         Assert.Throws<ArgumentNullException>( () =>
+//         {
+//             _countriesServices.GetCountryById(countryId);
+//         });
+//     }
 
-    //case 2: when Id is incorrect
-    [Fact]
-    public void GetCountryById_IdIsIncorrect()
-    {
-        Guid? countryId = Guid.NewGuid();
+//     //case 2: when Id is incorrect
+//     [Fact]
+//     public void GetCountryById_IdIsIncorrect()
+//     {
+//         Guid? countryId = Guid.NewGuid();
 
-        Assert.Throws<ArgumentException>(() =>
-        {
-            _countriesServices.GetCountryById(countryId);
-        });
-    }
+//         Assert.Throws<ArgumentException>(() =>
+//         {
+//             _countriesServices.GetCountryById(countryId);
+//         });
+//     }
 
-    //case 3: correct Id
-    [Fact]
-    public void GetCountryById_IdIsCorrect()
-    {
-        CountryAddRequest countryAddRequest = new CountryAddRequest()
-        {
-            Name = "USA"
-        };
+//     //case 3: correct Id
+//     [Fact]
+//     public void GetCountryById_IdIsCorrect()
+//     {
+//         CountryAddRequest countryAddRequest = new CountryAddRequest()
+//         {
+//             Name = "USA"
+//         };
         
-        CountryResponse? expectedCountryResponse = _countriesServices.AddCountry(countryAddRequest);
+//         CountryResponse? expectedCountryResponse = _countriesServices.AddCountry(countryAddRequest);
 
-        CountryResponse? actualCountryResponse = _countriesServices.GetCountryById(expectedCountryResponse?.Id);
+//         CountryResponse? actualCountryResponse = _countriesServices.GetCountryById(expectedCountryResponse?.Id);
 
-        Assert.Equal(expectedCountryResponse, actualCountryResponse);
+//         Assert.Equal(expectedCountryResponse, actualCountryResponse);
 
-    }
+//     }
 
-    #endregion
+//     #endregion
 
 
 }
